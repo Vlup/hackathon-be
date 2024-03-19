@@ -6,6 +6,7 @@ use App\Http\Resources\BuildingResource;
 use App\Models\Building;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BuildingController extends Controller
 {
@@ -29,6 +30,7 @@ class BuildingController extends Controller
             'image' => 'required|string',
             'lowest_price' => 'required|numeric',
             'highest_price' => 'required|numeric',
+            'land_area' => 'required',
             'building_area' => 'required',
             'description' => 'required|string',
         ];
@@ -36,6 +38,7 @@ class BuildingController extends Controller
         $input = $request->validate($rules);
 
         $building = new Building();
+        $building->id = Str::uuid();
         $building->name = $input['name'];
         $building->location = $input['location'];
         $building->image = $input['image'];
@@ -63,6 +66,7 @@ class BuildingController extends Controller
         $user = auth()->user();
 
         $comment = new Comment();
+        $comment->id = Str::uuid();
         $comment->building_id = $id;
         $comment->user_id = $user->id;
         $comment->body = $input['body'];

@@ -42,6 +42,7 @@ class BuildingController extends Controller
         $building->lowest_price = $input['lowest_price'];
         $building->highest_price = $input['highest_price'];
         $building->description = $input['description'];
+        $building->land_area = $input['land_area'];
         $building->building_area = $input['building_area'];
         $building->save();
 

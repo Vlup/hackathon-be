@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->float('lowest_price');
             $table->float('highest_price');
             $table->text('description');
+            $table->float('land_area');
             $table->float('building_area');
             $table->timestamps();
         });

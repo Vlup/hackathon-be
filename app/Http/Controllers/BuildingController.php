@@ -29,11 +29,10 @@ class BuildingController extends Controller
             'image' => 'required|string',
             'lowest_price' => 'required|numeric',
             'highest_price' => 'required|numeric',
-            'land_area' => 'required',
             'building_area' => 'required',
             'description' => 'required|string',
         ];
-        
+
         $input = $request->validate($rules);
 
         $building = new Building();
@@ -43,7 +42,6 @@ class BuildingController extends Controller
         $building->lowest_price = $input['lowest_price'];
         $building->highest_price = $input['highest_price'];
         $building->description = $input['description'];
-        $building->land_area = $input['land_area'];
         $building->building_area = $input['building_area'];
         $building->save();
 
@@ -57,7 +55,7 @@ class BuildingController extends Controller
         $rules = [
             'body' => 'required|string',
         ];
-        
+
         $input = $request->validate($rules);
 
         $user = auth()->user();

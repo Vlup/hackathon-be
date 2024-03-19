@@ -47,6 +47,7 @@ class BuildingController extends Controller
         $building->save();
 
         return response()->json([
+            "status" => true,
             'message' => 'Success add building!'
         ]);
     }
@@ -68,6 +69,7 @@ class BuildingController extends Controller
         $comment->save();
 
         return response()->json([
+            "status" => true,
             'message' => 'Success add comment!'
         ]);
     }

@@ -25,7 +25,8 @@ class AuthController extends Controller
 
         if ($input['password'] !== $input['confirmation_password']) {
             return response()->json([
-                "errors" => 'The password confirmation does not match.'
+                "status" => false,
+                "message" => 'The password confirmation does not match.'
             ], 400);
         }
 
@@ -40,8 +41,8 @@ class AuthController extends Controller
         $user->save();
 
         return response()->json([
+            "status" => true,
             'message' => 'Registration successful! Please login.',
-            'token' => $user->createToken("API TOKEN")->plainTextToken
         ]);
     }
 
@@ -52,24 +53,30 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if(!Auth::attempt($input)) {
+        if (!Auth::attempt($input)) {
             return response()->json([
-                "errors" => 'Email & Password is invalid!'
+                "status" => false,
+                "message" => 'Email & Password is invalid!'
             ], 401);
         }
 
         $user = User::where('email', $input['email'])->first();
 
         return response()->json([
+            "status" => true,
             'message' => 'Login successful!',
             'token' => $user->createToken("API TOKEN")->plainTextToken
         ]);
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         $user = auth()->user();
         $user->tokens()->delete();
 
-        return response()->json(['message' => 'Logged out successfully']);
+        return response()->json([
+            "status" => true,
+            'message' => 'Logged out successfully'
+        ]);
     }
 }

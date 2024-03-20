@@ -33,7 +33,6 @@ class AuthController extends Controller
         $input['password'] = Hash::make($input['password']);
 
         $user = new User();
-        $user->id = Str::uuid();
         $user->name = $input['name'];
         $user->email = $input['email'];
         $user->phone_number = $input['phone_number'];

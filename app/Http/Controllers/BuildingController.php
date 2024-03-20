@@ -65,7 +65,6 @@ class BuildingController extends Controller
         $user = auth()->user();
 
         $comment = new Comment();
-        $comment->id = Str::uuid();
         $comment->building_id = $id;
         $comment->user_id = $user->id;
         $comment->body = $input['body'];

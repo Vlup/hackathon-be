@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('buildings', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->integerIncrements('id');
             $table->string('name');
             $table->string('location');
             $table->string('image');

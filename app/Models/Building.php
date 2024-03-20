@@ -10,6 +10,17 @@ class Building extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'location',
+        'image',
+        'lowest_price',
+        'highest_price',
+        'description',
+        'land_area',
+        'building_area',
+    ];
+
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);

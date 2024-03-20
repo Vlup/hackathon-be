@@ -18,7 +18,7 @@ class BuildingController extends Controller
 
     public function show($id)
     {
-        $building = Building::firstOrFail($id);
+        $building = Building::with('comments')->firstOrFail($id);
         return new BuildingResource($building);
     }
 
@@ -38,7 +38,6 @@ class BuildingController extends Controller
         $input = $request->validate($rules);
 
         $building = new Building();
-        $building->id = Str::uuid();
         $building->name = $input['name'];
         $building->location = $input['location'];
         $building->image = $input['image'];
